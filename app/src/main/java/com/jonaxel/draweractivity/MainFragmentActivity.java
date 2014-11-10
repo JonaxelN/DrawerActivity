@@ -1,5 +1,6 @@
 package com.jonaxel.draweractivity;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -35,6 +36,7 @@ public class MainFragmentActivity extends FragmentActivity {
         mPagerAdapter = new PageAdapter(this.getSupportFragmentManager(), fragments);
 
         ViewPager pager = (ViewPager) findViewById(R.id.viewpager);
+        pager.setPageTransformer(true, new ZoomOutPageTransformer());
         pager.setAdapter(mPagerAdapter);
 
     }

@@ -215,7 +215,7 @@ public class NavigationDrawerFragment extends Fragment {
             case 1:
             break;
             case 2:
-                Intent intent = new Intent(getActivity(), MainActivity2.class);
+                Intent intent = new Intent(getActivity(), MainFragmentActivity.class);
                 startActivity(intent);
 
                 //fragment = new BlankFragment();
