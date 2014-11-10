@@ -36,7 +36,7 @@ public class MainFragmentActivity extends FragmentActivity {
         mPagerAdapter = new PageAdapter(this.getSupportFragmentManager(), fragments);
 
         ViewPager pager = (ViewPager) findViewById(R.id.viewpager);
-        pager.setPageTransformer(true, new ZoomOutPageTransformer());
+        pager.setPageTransformer(true, new ZoomOutTranformer());
         pager.setAdapter(mPagerAdapter);
 
     }
