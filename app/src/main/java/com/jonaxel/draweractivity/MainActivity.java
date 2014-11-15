@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.app.SearchManager;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 import android.widget.ArrayAdapter;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 
@@ -81,14 +83,24 @@ public class MainActivity extends Activity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        if (!mNavigationDrawerFragment.isDrawerOpen()) {
+        /*if (!mNavigationDrawerFragment.isDrawerOpen()) {
             // Only show items in the action bar relevant to this screen
             // if the drawer is not showing. Otherwise, let the drawer
             // decide what to show in the action bar.
-            getMenuInflater().inflate(R.menu.main, menu);
-            restoreActionBar();
             return true;
-        }
+        }*/
+
+
+        getMenuInflater().inflate(R.menu.main, menu);
+        restoreActionBar();
+
+        // Associate searchable configuration with the SearchView
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView = (SearchView) menu.findItem(R.id.action_search)
+                .getActionView();
+        searchView.setSearchableInfo(searchManager
+                .getSearchableInfo(getComponentName()));
+
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -103,8 +115,13 @@ public class MainActivity extends Activity
         if (id == R.id.action_settings) {
             return true;
         }
-
-        return super.onOptionsItemSelected(item);
+        switch (item.getItemId()) {
+            case R.id.action_search:
+                // search action
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     /**
