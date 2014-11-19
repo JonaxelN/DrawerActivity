@@ -25,6 +25,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.MapFragment;
+
 /**
  * Fragment used for managing interactions for and presentation of a navigation drawer.
  * See the <a href="https://developer.android.com/design/patterns/navigation-drawer.html#Interaction">
@@ -211,9 +213,12 @@ public class NavigationDrawerFragment extends Fragment {
 
         switch (position) {
             case 0:
-            break;
+                break;
             case 1:
-            break;
+                fragment = new MapFragment();
+                ft.replace(R.id.container, fragment);
+                ft.commit();
+                break;
             case 2:
                 Intent intent = new Intent(getActivity(), MainFragmentActivity.class);
                 startActivity(intent);
@@ -226,7 +231,7 @@ public class NavigationDrawerFragment extends Fragment {
                 ft.replace(R.id.container,fragment);
                 ft.commit();*/
 
-            break;
+                break;
         }
     }
 
